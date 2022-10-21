@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
 
                 startActivityForResult(new Intent(MainActivity.this,
-                        Main2Activity.class), 1);
+                        MainActivity2.class), 1);
             }
         });
     }
@@ -37,14 +37,16 @@ public class MainActivity extends AppCompatActivity {
         if (data == null) return;
 
         if(requestCode == 1){
-            Bundle b = data.getExtras();
-            String str1 = b.getString("drink");
-            String str2 = b.getString("suger");
-            String str3 = b.getString("ice");
-            tv_meal.setText(String.format("飲料: %s\n\n甜度: %s\n\n冰塊: %\n\n",
-                    str1,
-                    str2,
-                    str3));
+            if (resultCode == 101) {
+                Bundle b = data.getExtras();
+                String str1 = b.getString("drink");
+                String str2 = b.getString("sugar");
+                String str3 = b.getString("ice");
+                tv_meal.setText(String.format("飲料: %s\n\n甜度: %s\n\n冰塊: %s\n\n",
+                        str1,
+                        str2,
+                        str3));
+            }
         }
     }
 }
